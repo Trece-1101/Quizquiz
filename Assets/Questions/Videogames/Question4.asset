@@ -13,3 +13,9 @@ MonoBehaviour:
   m_Name: Question4
   m_EditorClassIdentifier: 
   questionText: What is the most expensive video game made to date?
+  answers:
+  - Cyberpunk2077
+  - Red Dead Redemption 2
+  - GTA V
+  - The Witcher 3
+  correctAnswerIndex: 2

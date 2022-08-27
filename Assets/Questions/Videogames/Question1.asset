@@ -13,3 +13,9 @@ MonoBehaviour:
   m_Name: Question1
   m_EditorClassIdentifier: 
   questionText: What is the best selling videogame of all time?
+  answers:
+  - Super Mario Bros
+  - Minecraft
+  - GTA V
+  - Half Life
+  correctAnswerIndex: 1

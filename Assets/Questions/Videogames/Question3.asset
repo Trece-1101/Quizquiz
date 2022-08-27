@@ -13,3 +13,9 @@ MonoBehaviour:
   m_Name: Question3
   m_EditorClassIdentifier: 
   questionText: What food was the character Pac Man modeled after?
+  answers:
+  - Pie
+  - Egg
+  - Donut
+  - Pizza
+  correctAnswerIndex: 3
