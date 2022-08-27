@@ -9,8 +9,21 @@ public class Timer : MonoBehaviour
     private bool isTimeLeft = true;
     private Quiz quiz;
 
-    public bool IsAnswerSelected { get => isAnswerSelected; set => isAnswerSelected = value; }
+    private void OnEnable()
+    {
+        Quiz.AnswerClicked += AnswerSelected;
+    }
 
+    private void OnDisable()
+    {
+        Quiz.AnswerClicked -= AnswerSelected;
+    }
+
+
+    private void AnswerSelected()
+    {
+        isAnswerSelected = true;
+    }
     private void Awake()
     {
         quiz = FindObjectOfType<Quiz>();

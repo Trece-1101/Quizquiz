@@ -7,6 +7,9 @@ using System.Reflection;
 
 public class Quiz : MonoBehaviour
 {
+    public delegate void ClickAction();
+    public static event ClickAction AnswerClicked;
+
     [SerializeField] private TextMeshProUGUI questionText;
     [SerializeField] private Question question;
     [SerializeField] private GameObject[] answerButtons;
@@ -35,6 +38,8 @@ public class Quiz : MonoBehaviour
 
     public void OnAnswerSelected(int index)
     {
+        AnswerClicked();
+
         if(index == correcAnswerIndex)
         {
             AnswerDisplay(true);
