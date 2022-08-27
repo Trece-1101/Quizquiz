@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Reflection;
 
 public class Quiz : MonoBehaviour
 {
@@ -34,22 +35,53 @@ public class Quiz : MonoBehaviour
 
     public void OnAnswerSelected(int index)
     {
-        if (!resultImage) return;
-
-        resultImage.SetActive(true);
-
         if(index == correcAnswerIndex)
         {
-            resultImage.GetComponent<ResultFeedback>().SetResult(true);
+            AnswerDisplay(true);
         }
         else
         {
             answerButtons[index].GetComponent<Image>().color = wrongAnswerColor;
+            AnswerDisplay(false);
+        }
+    }
+
+    public void AnswerDisplay(bool isCorrect, bool timeLeft = true)
+    {
+        if (!resultImage) return;
+
+        resultImage.SetActive(true);
+
+        if (isCorrect && timeLeft)
+        {
+            resultImage.GetComponent<ResultFeedback>().SetResult(true);
+        }
+        else if (!isCorrect && timeLeft)
+        {
             resultImage.GetComponent<ResultFeedback>().SetResult(false);
+        }
+        else
+        {
+            resultImage.GetComponent<ResultFeedback>().TimeEnded();
         }
 
         // No matter right or wrong answer, the right one should always be shown to player
         answerButtons[correcAnswerIndex].GetComponent<Image>().color = correctAnswerColor;
+
+        SetButtonState(false);
+    }
+
+    private void SetButtonState(bool isEnable)
+    {
+        foreach (var button in answerButtons)
+        {
+            button.GetComponent<Button>().interactable = isEnable;
+        }
+    }
+
+    private void NextQuestion()
+    {
+
     }
 
 }
