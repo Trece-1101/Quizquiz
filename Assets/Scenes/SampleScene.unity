@@ -1134,7 +1134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.745283, g: 0.18526135, b: 0.17928976, a: 1}
+  m_Color: {r: 0.8301887, g: 0.20409347, b: 0.19971518, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1146,7 +1146,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0.406
+  m_FillAmount: 1
   m_FillClockwise: 0
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
@@ -1171,7 +1171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee03a42884406a942820311561159bd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeForAnswer: 4
+  timeLeftForAnswer: 10
 --- !u!1 &596798673
 GameObject:
   m_ObjectHideFlags: 0
@@ -2328,7 +2328,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
