@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Reflection;
+using UnityEngine.SceneManagement;
 
 public class Quiz : MonoBehaviour
 {
@@ -14,10 +15,18 @@ public class Quiz : MonoBehaviour
     [SerializeField] private Question question;
     [SerializeField] private GameObject[] answerButtons;
     [SerializeField] private GameObject resultImage;
+    [SerializeField] private Button nextQuestionButton;
+    [SerializeField] private Button returnButton;
     private int correcAnswerIndex;
     private Color correctAnswerColor = Color.green;
     private Color wrongAnswerColor = Color.red;
 
+
+    private void Awake()
+    {
+        nextQuestionButton.interactable = false;
+        returnButton.interactable = false;
+    }
     private void Start()
     {
         if (!question) return;
@@ -82,11 +91,18 @@ public class Quiz : MonoBehaviour
         {
             button.GetComponent<Button>().interactable = isEnable;
         }
+
+        nextQuestionButton.interactable = true;
+        returnButton.interactable = true;
     }
 
-    private void NextQuestion()
+    public void NextQuestion()
     {
 
     }
 
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene("ChoseCategoryScene");
+    }
 }

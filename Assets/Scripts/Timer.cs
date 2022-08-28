@@ -69,9 +69,7 @@ public class Timer : MonoBehaviour
     {
         if (timeLeftForAnswer <= float.Epsilon)
         {
-            // Siguiente pregunta
             quiz.AnswerDisplay(false, false);
-            Debug.Log("perdiste");
             isTimeLeft = false;
         }
     }
