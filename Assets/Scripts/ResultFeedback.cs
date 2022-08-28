@@ -7,9 +7,16 @@ using UnityEngine.UI;
 
 public class ResultFeedback : MonoBehaviour
 {
+
+    private Transform correctText;
+    private Transform incorrectText;
+    private Transform endTimeText;
     private void Awake()
     {
-        this.gameObject.SetActive(false); 
+        correctText = transform.Find("CorrectText");
+        incorrectText = transform.Find("IncorrectText");
+        endTimeText = transform.Find("EndTimeText");
+        this.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -24,20 +31,27 @@ public class ResultFeedback : MonoBehaviour
     {
         if (isCorrect)
         {
-            var resultText = transform.Find("CorrectText");
-            resultText.gameObject.SetActive(true);
+            //var resultText = transform.Find("CorrectText");
+            correctText.gameObject.SetActive(true);
         }
         else
         {
-            var resultText = transform.Find("IncorrectText");
-            resultText.gameObject.SetActive(true);
+            //var resultText = transform.Find("IncorrectText");
+            incorrectText.gameObject.SetActive(true);
         }
     }
 
     public void TimeEnded()
     {
-        var resultText = transform.Find("EndTimeText");
-        resultText.gameObject.SetActive(true);
+        //var resultText = transform.Find("EndTimeText");
+        endTimeText.gameObject.SetActive(true);
+    }
+
+    public void ResetImages()
+    {
+        correctText.gameObject.SetActive(false);
+        incorrectText.gameObject.SetActive(false);
+        endTimeText.gameObject.SetActive(false);
     }
 
 }

@@ -18,11 +18,13 @@ public class Timer : MonoBehaviour
     private void OnEnable()
     {
         Quiz.AnswerClicked += AnswerSelected;
+        Quiz.QuestionStarted += ResetTimer;
     }
 
     private void OnDisable()
     {
         Quiz.AnswerClicked -= AnswerSelected;
+        Quiz.QuestionStarted -= ResetTimer;
     }
     private void Awake()
     {
@@ -35,6 +37,7 @@ public class Timer : MonoBehaviour
     {
         originalTimeForAnswer = timeLeftForAnswer;
     }
+
     private void Update()
     {
         if (!isTimeLeft || isAnswerSelected) return;
@@ -44,14 +47,13 @@ public class Timer : MonoBehaviour
     private void AnswerSelected()
     {
         isAnswerSelected = true;
-        ResetTimer();
     }
 
     private void UpdateTimer()
     {
         timeLeftForAnswer -= Time.deltaTime;
-        UpdateVisual();
         CheckTimeLeft();
+        UpdateVisual();
     }
 
     private void UpdateVisual()
@@ -77,5 +79,8 @@ public class Timer : MonoBehaviour
     private void ResetTimer()
     {
         timeLeftForAnswer = originalTimeForAnswer;
+        UpdateVisual();
+        isAnswerSelected = false;
+        isTimeLeft = true;
     }
 }
