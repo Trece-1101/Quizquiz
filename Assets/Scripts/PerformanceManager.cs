@@ -29,14 +29,9 @@ public class PerformanceManager : MonoBehaviour
         if(isCorrect) correctQuestionsAnswered++;
         questionsAnswered++;
 
-        Debug.Log(correctQuestionsAnswered);
-        Debug.Log(questionsAnswered);
-
         // 2 / 4 = 0.5 * 100 = 50
         performanceValue = ((float)correctQuestionsAnswered / questionsAnswered) * 100;
         UpdatePerformanceUI();
-
-        Debug.Log(performanceValue);
     }
 
     private void UpdatePerformanceUI()

@@ -20,6 +20,7 @@ public class Quiz : MonoBehaviour
     [Header("Question")]
     [SerializeField] private TextMeshProUGUI questionText;
     [SerializeField] private List<Question> questionsList = new List<Question>();
+    [SerializeField] private Slider questionProgressSlider;
     private Question currentQuestion;
 
     [Header("Answer")]
@@ -45,7 +46,9 @@ public class Quiz : MonoBehaviour
     private void Start()
     {
         StartQuestion();
+        SetProgressBar();
     }
+
 
     private void StartQuestion()
     {
@@ -56,6 +59,11 @@ public class Quiz : MonoBehaviour
         questionsList.Remove(currentQuestion);
 
         QuestionStarted?.Invoke();
+    }
+    private void SetProgressBar()
+    {
+        questionProgressSlider.value = 0;
+        questionProgressSlider.maxValue = questionsList.Count;
     }
 
     private Question GetRandomQuestion()
@@ -148,6 +156,7 @@ public class Quiz : MonoBehaviour
     public void NextQuestion()
     {
         StartQuestion();
+        questionProgressSlider.value++;
     }
 
     public void ReturnToMenu()
