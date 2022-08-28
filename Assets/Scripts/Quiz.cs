@@ -15,6 +15,7 @@ public class Quiz : MonoBehaviour
     public static event ClickAction AnswerClicked;
     public static event QuestionAction QuestionStarted;
     
+    public static event Action<bool> CorrectAnswer;
 
     [Header("Question")]
     [SerializeField] private TextMeshProUGUI questionText;
@@ -54,7 +55,7 @@ public class Quiz : MonoBehaviour
         resultImage.SetActive(false);
         questionsList.Remove(currentQuestion);
 
-        QuestionStarted();
+        QuestionStarted?.Invoke();
     }
 
     private Question GetRandomQuestion()
@@ -77,14 +78,14 @@ public class Quiz : MonoBehaviour
 
     public void OnAnswerSelected(int index)
     {
-        AnswerClicked();
+        AnswerClicked?.Invoke();
 
         if(index == correcAnswerIndex)
-        {
+        {  
             AnswerDisplay(true);
         }
         else
-        {
+        { 
             answerButtons[index].GetComponent<Image>().color = wrongAnswerColor;
             AnswerDisplay(false);
         }
@@ -98,14 +99,17 @@ public class Quiz : MonoBehaviour
 
         if (isCorrect && timeLeft)
         {
+            CorrectAnswer?.Invoke(true);
             resultImage.GetComponent<ResultFeedback>().SetResult(true);
         }
         else if (!isCorrect && timeLeft)
         {
+            CorrectAnswer?.Invoke(false);
             resultImage.GetComponent<ResultFeedback>().SetResult(false);
         }
         else
         {
+            CorrectAnswer?.Invoke(false);
             resultImage.GetComponent<ResultFeedback>().TimeEnded();
         }
 
@@ -113,7 +117,7 @@ public class Quiz : MonoBehaviour
         answerButtons[correcAnswerIndex].GetComponent<Image>().color = correctAnswerColor;
 
         SetButtonState(false, false);
-        if(!RemainingQuestions()) Invoke(nameof(ReturnToMenu), 3f);
+        if(!RemainingQuestions()) Invoke(nameof(ReturnToMenu), 2f);
     }
 
     private bool RemainingQuestions()
