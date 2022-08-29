@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e2ee7cbb29f30447af09d944342edc9, type: 3}
+  m_Name: Music_Medium_3
+  m_EditorClassIdentifier: 
+  questionText: Which of these is NOT a song on The Beatles 1968 self titled album,
+    also known as the White album?
+  answers:
+  - Why Don't We Do It in the Road?
+  - Everybody's Got Something to Hide Except Me and My Monkey
+  - Being For The Benefit Of Mr. Kite!
+  - The Continuing Story of Bungalow Bill
+  correctAnswerIndex: 2
