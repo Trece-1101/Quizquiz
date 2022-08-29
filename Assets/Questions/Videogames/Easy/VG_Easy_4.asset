@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e2ee7cbb29f30447af09d944342edc9, type: 3}
+  m_Name: VG_Easy_4
+  m_EditorClassIdentifier: 
+  questionText: Which of these is NOT a playable character in the 2016 video game
+    Overwatch?
+  answers:
+  - Invoker
+  - Mercy
+  - Winston
+  - Zenyatta
+  correctAnswerIndex: 0
