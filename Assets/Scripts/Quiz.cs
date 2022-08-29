@@ -18,8 +18,8 @@ public class Quiz : MonoBehaviour
     public static event Action<bool> CorrectAnswer;
 
     [Header("Question")]
-    [SerializeField] private TextMeshProUGUI questionText;
-    [SerializeField] private List<Question> questionsList = new List<Question>();
+    private TextMeshProUGUI questionText;
+    private List<Question> questionsList = new List<Question>();
     [SerializeField] private Slider questionProgressSlider;
     private Question currentQuestion;
 
@@ -42,11 +42,21 @@ public class Quiz : MonoBehaviour
     {
         nextQuestionButton.interactable = false;
         returnButton.interactable = false;
+
+        //
+        Question[] questions = Resources.LoadAll<Question>("Questions/Videogames/Easy");
+
+        Debug.Log(questions.Length);
+
+        for (int i = 0; i < questions.Length; i++)
+        {
+            Debug.Log(questions[i].QuestionText);
+        }
     }
     private void Start()
     {
-        StartQuestion();
-        SetProgressBar();
+        //StartQuestion();
+        //SetProgressBar();
     }
 
 
