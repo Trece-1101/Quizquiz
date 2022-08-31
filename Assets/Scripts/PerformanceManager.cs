@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PerformanceManager : MonoBehaviour
+public class PerformanceManager : MonoBehaviour, IPerformance
 {
     private int questionsAnswered = 0;
     private int correctQuestionsAnswered = 0;
@@ -24,7 +24,7 @@ public class PerformanceManager : MonoBehaviour
         UpdatePerformanceUI();
     }
 
-    private void CalculatePerformance(bool isCorrect)
+    public void CalculatePerformance(bool isCorrect)
     {
         if(isCorrect) correctQuestionsAnswered++;
         questionsAnswered++;
@@ -38,7 +38,4 @@ public class PerformanceManager : MonoBehaviour
     {
         transform.GetComponentInChildren<TextMeshProUGUI>().text = $"{(int)performanceValue}%";
     }
-
-
-
 }
