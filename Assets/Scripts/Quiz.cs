@@ -18,9 +18,11 @@ public class Quiz : MonoBehaviour
     public static event Action<bool> CorrectAnswer;
 
     [Header("Question")]
-    [SerializeField] private TextMeshProUGUI questionText;
-    [SerializeField] private List<Question> questionsList = new List<Question>();
     [SerializeField] private Slider questionProgressSlider;
+    [SerializeField] private GameData gameData;
+    [SerializeField] private TextMeshProUGUI questionText;
+    [SerializeField] private TextMeshProUGUI categoryText;
+    private List<Question> questionsList = new List<Question>();
     private Question currentQuestion;
 
     [Header("Answer")]
@@ -42,6 +44,16 @@ public class Quiz : MonoBehaviour
     {
         nextQuestionButton.interactable = false;
         returnButton.interactable = false;
+        categoryText.text = gameData.Category + " - " + gameData.Difficulty;
+
+        string path = "Questions/" + gameData.Category + "/" + gameData.Difficulty;
+
+        Question[] questions = Resources.LoadAll<Question>(path);
+
+        foreach (var question in questions)
+        {
+            questionsList.Add(question);
+        }
     }
     private void Start()
     {

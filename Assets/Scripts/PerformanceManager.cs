@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PerformanceManager : MonoBehaviour
+public class PerformanceManager : MonoBehaviour, IPerformance
 {
     private int questionsAnswered = 0;
     private int correctQuestionsAnswered = 0;
     private float performanceValue = 0f;
+    private TextMeshProUGUI performanceText;
 
     private void OnEnable()
     {
@@ -19,12 +20,17 @@ public class PerformanceManager : MonoBehaviour
         Quiz.CorrectAnswer += CalculatePerformance;
     }
 
+    private void Awake()
+    {
+        performanceText = transform.GetComponentInChildren<TextMeshProUGUI>();
+    }
+
     private void Start()
     {
         UpdatePerformanceUI();
     }
 
-    private void CalculatePerformance(bool isCorrect)
+    public void CalculatePerformance(bool isCorrect)
     {
         if(isCorrect) correctQuestionsAnswered++;
         questionsAnswered++;
@@ -36,9 +42,6 @@ public class PerformanceManager : MonoBehaviour
 
     private void UpdatePerformanceUI()
     {
-        transform.GetComponentInChildren<TextMeshProUGUI>().text = $"{(int)performanceValue}%";
+        performanceText.text = $"{(int)performanceValue}%";
     }
-
-
-
 }
