@@ -8,6 +8,7 @@ public class PerformanceManager : MonoBehaviour, IPerformance
     private int questionsAnswered = 0;
     private int correctQuestionsAnswered = 0;
     private float performanceValue = 0f;
+    private TextMeshProUGUI performanceText;
 
     private void OnEnable()
     {
@@ -17,6 +18,11 @@ public class PerformanceManager : MonoBehaviour, IPerformance
     private void OnDisable()
     {
         Quiz.CorrectAnswer += CalculatePerformance;
+    }
+
+    private void Awake()
+    {
+        performanceText = transform.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     private void Start()
@@ -36,6 +42,6 @@ public class PerformanceManager : MonoBehaviour, IPerformance
 
     private void UpdatePerformanceUI()
     {
-        transform.GetComponentInChildren<TextMeshProUGUI>().text = $"{(int)performanceValue}%";
+        performanceText.text = $"{(int)performanceValue}%";
     }
 }
