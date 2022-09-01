@@ -13,14 +13,17 @@ public class MenuManager : MonoBehaviour
     private string categorySelected = "";
     private string diffultySelected = "";
     private Button startButton;
+    private SoundManager soundManger;
 
     private void Awake()
     {
         startButton = transform.Find("StartButton").GetComponent<Button>();
+        soundManger = FindObjectOfType<SoundManager>();
     }
     private void Start()
     {
         startButton.interactable = false;
+        soundManger.PlayMenuMusic();
     }
     public void StartGame()
     {

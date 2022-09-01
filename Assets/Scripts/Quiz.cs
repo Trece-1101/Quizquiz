@@ -38,10 +38,12 @@ public class Quiz : MonoBehaviour
     private Color correctAnswerColor = Color.green;
     private Color wrongAnswerColor = Color.red;
     private Color initialColor = Color.white;
+    private SoundManager soundManger;
 
 
     private void Awake()
     {
+        soundManger = FindObjectOfType<SoundManager>();
         nextQuestionButton.interactable = false;
         returnButton.interactable = false;
         categoryText.text = gameData.Category + " - " + gameData.Difficulty;
@@ -57,6 +59,7 @@ public class Quiz : MonoBehaviour
     }
     private void Start()
     {
+        soundManger.PlayGameMusic();
         StartQuestion();
         SetProgressBar();
     }
@@ -115,6 +118,7 @@ public class Quiz : MonoBehaviour
     {
         if (!resultImage) return;
 
+        soundManger.PlayAnswerSFX(isCorrect);
         resultImage.SetActive(true);
 
         if (isCorrect && timeLeft)

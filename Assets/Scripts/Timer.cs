@@ -14,6 +14,7 @@ public class Timer : MonoBehaviour
     private TextMeshProUGUI timeLeftText;
     private Image quizTimer;
     private Quiz quiz;
+    private SoundManager soundManger;
 
     private void OnEnable()
     {
@@ -28,6 +29,7 @@ public class Timer : MonoBehaviour
     }
     private void Awake()
     {
+        soundManger = FindObjectOfType<SoundManager>();
         quiz = FindObjectOfType<Quiz>();
         quizTimer = GetComponent<Image>();
         timeLeftText = transform.Find("TimeLeft").GetComponent<TextMeshProUGUI>();
@@ -73,6 +75,11 @@ public class Timer : MonoBehaviour
         {
             quiz.AnswerDisplay(false, false);
             isTimeLeft = false;
+        }
+
+        if(Mathf.Ceil(timeLeftForAnswer) == 10)
+        {
+            soundManger.PlayWarningMusic();
         }
     }
 
