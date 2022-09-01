@@ -67,6 +67,7 @@ public class Quiz : MonoBehaviour
 
     private void StartQuestion()
     {
+        soundManger.PlayGameMusic();
         currentQuestion = GetRandomQuestion();
         GetQuestionData();
         SetButtonState(true, true);
@@ -135,6 +136,7 @@ public class Quiz : MonoBehaviour
         {
             CorrectAnswer?.Invoke(false);
             resultImage.GetComponent<ResultFeedback>().TimeEnded();
+            soundManger.PlayGameMusic();
         }
 
         // No matter right or wrong answer, the right one should always be shown to player
