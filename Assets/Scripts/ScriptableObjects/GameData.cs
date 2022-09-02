@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,15 +9,21 @@ public class GameData : ScriptableObject, IPerformance
         new Dictionary<string, int[]>() {
             {"Videogames", new int[]{0, 0, 0} },
             {"Films", new int[]{0, 0, 0} },
-            {"Music", new int[]{0, 0, 0} }
+            {"Music", new int[]{0, 0, 0} },
+            {"Books", new int[]{0, 0, 0} },
+            {"Television", new int[]{0, 0, 0} }
         };
 
     private string category;
     private string difficulty;
+    private int categoryNumber;
+    private bool isConnected;
 
     public string Category { get => category; set => category = value; }
     public string Difficulty { get => difficulty; set => difficulty = value; }
     public Dictionary<string, int[]> GlobalPerformance { get => globalPerformance; }
+    public int CategoryNumber { get => categoryNumber; set => categoryNumber = value; }
+    public bool IsConnected { get => isConnected; set => isConnected = value; }
 
     private void OnEnable()
     {

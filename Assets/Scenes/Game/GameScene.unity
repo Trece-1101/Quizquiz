@@ -2580,6 +2580,7 @@ MonoBehaviour:
   - {fileID: 496289524}
   - {fileID: 1127118757}
   resultImage: {fileID: 1996219401}
+  timer: {fileID: 589958551}
   nextQuestionButton: {fileID: 1871313508}
   returnButton: {fileID: 1839358129}
 --- !u!4 &1399089966
@@ -2719,7 +2720,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This is a base question for the game.
+  m_text: Loading Question
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dd931dd32be101c439272ba5417dfbda, type: 2}
   m_sharedMaterial: {fileID: 1486912496348515633, guid: dd931dd32be101c439272ba5417dfbda, type: 2}
@@ -3117,6 +3118,7 @@ GameObject:
   - component: {fileID: 1839358131}
   - component: {fileID: 1839358130}
   - component: {fileID: 1839358129}
+  - component: {fileID: 1839358133}
   m_Layer: 5
   m_Name: ReturnButton
   m_TagString: Untagged
@@ -3171,6 +3173,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1399089965}
         m_TargetAssemblyTypeName: Quiz, Assembly-CSharp
         m_MethodName: ReturnToMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1839358133}
+        m_TargetAssemblyTypeName: ButtonSFX, Assembly-CSharp
+        m_MethodName: PlaySFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3238,6 +3252,18 @@ RectTransform:
   m_AnchoredPosition: {x: 3.7999878, y: 3.600006}
   m_SizeDelta: {x: 160, y: 40}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1839358133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839358128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9648e4e90d048049b8cd340699adc3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1842521367
 GameObject:
   m_ObjectHideFlags: 0
@@ -3356,6 +3382,7 @@ GameObject:
   - component: {fileID: 1871313507}
   - component: {fileID: 1871313506}
   - component: {fileID: 1871313508}
+  - component: {fileID: 1871313509}
   m_Layer: 5
   m_Name: NextQuestionButton
   m_TagString: Untagged
@@ -3477,6 +3504,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1871313509}
+        m_TargetAssemblyTypeName: ButtonSFX, Assembly-CSharp
+        m_MethodName: PlaySFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1871313509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871313504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9648e4e90d048049b8cd340699adc3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1985094168
 GameObject:
   m_ObjectHideFlags: 0

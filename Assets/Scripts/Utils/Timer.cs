@@ -14,6 +14,17 @@ public class Timer : MonoBehaviour
     private TextMeshProUGUI timeLeftText;
     private Image quizTimer;
     private Quiz quiz;
+    private SoundManager soundManger;
+    private bool startTimer = false;
+
+    //public float TimeLeftForAnswer { get => timeLeftForAnswer; set => timeLeftForAnswer = value; }
+    public bool StartTimer { get => startTimer; set => startTimer = value; }
+
+    public void SetTimeLeft(float value)
+    {
+        timeLeftForAnswer = value;
+        originalTimeForAnswer = timeLeftForAnswer;
+    }
 
     private void OnEnable()
     {
@@ -28,6 +39,7 @@ public class Timer : MonoBehaviour
     }
     private void Awake()
     {
+        soundManger = FindObjectOfType<SoundManager>();
         quiz = FindObjectOfType<Quiz>();
         quizTimer = GetComponent<Image>();
         timeLeftText = transform.Find("TimeLeft").GetComponent<TextMeshProUGUI>();
@@ -35,12 +47,12 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
-        originalTimeForAnswer = timeLeftForAnswer;
+        //originalTimeForAnswer = timeLeftForAnswer;
     }
 
     private void Update()
     {
-        if (!isTimeLeft || isAnswerSelected) return;
+        if (!isTimeLeft || isAnswerSelected || !startTimer) return;
         UpdateTimer();
     }
 
@@ -73,6 +85,11 @@ public class Timer : MonoBehaviour
         {
             quiz.AnswerDisplay(false, false);
             isTimeLeft = false;
+        }
+
+        if(Mathf.Ceil(timeLeftForAnswer) == 10)
+        {
+            soundManger.PlayWarningMusic();
         }
     }
 

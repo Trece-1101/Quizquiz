@@ -11,8 +11,9 @@ public class Question : ScriptableObject
     [SerializeField] private string[] answers = new string[4];
     [SerializeField][Range(0, 3)] private int correctAnswerIndex = 0;
 
-    public string QuestionText { get => questionText; }
-    public string[] Answers { get => answers; }
+
+    public string QuestionText { get => questionText; set => questionText = value; }
+    public string[] Answers { get => answers; set => answers = value; }
     public string Answer(int index) { return Answers[index]; }   
-    public int CorrectAnswerIndex { get => correctAnswerIndex; }
+    public int CorrectAnswerIndex { get => correctAnswerIndex; set => correctAnswerIndex = value; }
 }
