@@ -113,14 +113,7 @@ public class Quiz : MonoBehaviour
         Debug.Log($"Question: {questionText} - Correct: {correctAnswerText}");
 #endif
         }
-
-        StartCoroutine(WaitForInitit());
         StartQuiz();
-    }
-
-    IEnumerator WaitForInitit()
-    {
-        yield return new WaitForSeconds(0.5f);
     }
 
     private void StartQuiz()
