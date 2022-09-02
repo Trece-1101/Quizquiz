@@ -31,7 +31,7 @@ public class MenuManager : MonoBehaviour
 
     private async void CheckConnection()
     {
-        var quizez = await ConsumeAPI.GetNewQuestions(1, -1);
+        var quizez = await ConsumeAPI.GetNewQuestions(1);
         if(quizez.response_code == 0)
         {
             isConnectedToAPI = true;

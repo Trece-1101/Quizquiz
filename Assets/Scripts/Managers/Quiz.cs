@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using System;
 using Random = UnityEngine.Random;
 using System.Threading.Tasks;
+using System.Collections;
 
 public class Quiz : MonoBehaviour
 {
@@ -113,7 +114,13 @@ public class Quiz : MonoBehaviour
 #endif
         }
 
+        StartCoroutine(WaitForInitit());
         StartQuiz();
+    }
+
+    IEnumerator WaitForInitit()
+    {
+        yield return new WaitForSeconds(0.5f);
     }
 
     private void StartQuiz()
