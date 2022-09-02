@@ -14,10 +14,17 @@ El juego no tiene persistencia en disco por lo cual ningun archivo sera creado e
 ***Plataforma:*** PC (Windows y Linux)
 
 ***Genero:*** Quizz - Puzzle
+
+### ***Pasos para jugar***
+1. Descargar archivo QuizQuiz.rar
+2. Extraer en una carpeta
+3. Ejecutar Quizquiz
+4. Jugar!
+
+Tambien podes encontrar la descarga en mi pagina de itch.io --> https://nicebuggames.itch.io/quizquiz
 ***
 ### ***Preview***
 (Click en la imagen para abrir video en youtube)
-
 
 [![Gameplay](https://user-images.githubusercontent.com/22348284/188204095-36cc7b10-fd72-41bf-ae44-f751723fc5a0.png)](https://youtu.be/BJTg4WselpE)
 ***
