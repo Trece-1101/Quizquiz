@@ -15,6 +15,16 @@ public class Timer : MonoBehaviour
     private Image quizTimer;
     private Quiz quiz;
     private SoundManager soundManger;
+    private bool startTimer = false;
+
+    //public float TimeLeftForAnswer { get => timeLeftForAnswer; set => timeLeftForAnswer = value; }
+    public bool StartTimer { get => startTimer; set => startTimer = value; }
+
+    public void SetTimeLeft(float value)
+    {
+        timeLeftForAnswer = value;
+        originalTimeForAnswer = timeLeftForAnswer;
+    }
 
     private void OnEnable()
     {
@@ -37,12 +47,12 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
-        originalTimeForAnswer = timeLeftForAnswer;
+        //originalTimeForAnswer = timeLeftForAnswer;
     }
 
     private void Update()
     {
-        if (!isTimeLeft || isAnswerSelected) return;
+        if (!isTimeLeft || isAnswerSelected || !startTimer) return;
         UpdateTimer();
     }
 

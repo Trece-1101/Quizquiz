@@ -1,12 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using System.Reflection;
 using UnityEngine.SceneManagement;
 using System;
 using Random = UnityEngine.Random;
+using System.Threading.Tasks;
 
 public class Quiz : MonoBehaviour
 {
@@ -28,6 +27,7 @@ public class Quiz : MonoBehaviour
     [Header("Answer")]
     [SerializeField] private GameObject[] answerButtons;
     [SerializeField] private GameObject resultImage;
+    [SerializeField] private Timer timer;
     private int correcAnswerIndex;
 
     [Header("Buttons")]
@@ -45,9 +45,23 @@ public class Quiz : MonoBehaviour
     {
         soundManger = FindObjectOfType<SoundManager>();
         nextQuestionButton.interactable = false;
-        returnButton.interactable = false;
-        categoryText.text = gameData.Category + " - " + gameData.Difficulty;
+        returnButton.interactable = false;        
+    }
+    private void Start()
+    {
+        if (gameData.IsConnected)
+        {
+            LoadQuestionsAsync();
+        }
+        else
+        {
+            LoadQuestions();
+        }
 
+    }
+
+    private void LoadQuestions()
+    {
         string path = "Questions/" + gameData.Category + "/" + gameData.Difficulty;
 
         Question[] questions = Resources.LoadAll<Question>(path);
@@ -56,12 +70,76 @@ public class Quiz : MonoBehaviour
         {
             questionsList.Add(question);
         }
+
+        StartQuiz();
     }
-    private void Start()
+
+    private async void LoadQuestionsAsync()
     {
-        soundManger.PlayGameMusic();
+        var quizez = await ConsumeAPI.GetNewQuestions(5, gameData.CategoryNumber, gameData.Difficulty);
+
+        foreach (var quiz in quizez.results)
+        {
+            Question question = ScriptableObject.CreateInstance<Question>();
+            string questionText = ReplaceUnicodeErrors(quiz.question);
+            question.QuestionText = questionText;
+            string[] tempAnswers = new string[4];
+
+            int correctAnswerIndex = CreateRandomIndex();
+            question.CorrectAnswerIndex = correctAnswerIndex;
+
+            string correctAnswerText = ReplaceUnicodeErrors(quiz.correct_answer);
+
+            tempAnswers.SetValue(correctAnswerText, correctAnswerIndex);
+
+            foreach (var answer in quiz.incorrect_answers)
+            {
+                string inCorrectAnswerText = ReplaceUnicodeErrors(answer);
+
+                int i = 0;
+                while (tempAnswers[i] != null)
+                {
+                    i++;
+                }
+
+                tempAnswers[i] = inCorrectAnswerText;
+            }
+
+            question.Answers = tempAnswers;
+            questionsList.Add(question);
+
+#if UNITY_EDITOR
+        Debug.Log($"Question: {questionText} - Correct: {correctAnswerText}");
+#endif
+        }
+
+        StartQuiz();
+    }
+
+    private void StartQuiz()
+    {
+        StartFeedback();
         StartQuestion();
         SetProgressBar();
+    }
+
+
+    private int CreateRandomIndex()
+    {
+        return Random.Range(0, 3);
+    }
+
+    private string ReplaceUnicodeErrors(string text)
+    {
+        return text.Replace("&quot;", "\"").Replace("&#039;", "\'");
+    }
+
+    private void StartFeedback()
+    {
+        timer.SetTimeLeft(gameData.Difficulty == "easy" ? 20 : gameData.Difficulty == "medium" ? 25 : 30);
+        timer.StartTimer = true;
+        categoryText.text = gameData.Category + " - " + gameData.Difficulty;
+        soundManger.PlayGameMusic();
     }
 
 

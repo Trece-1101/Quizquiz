@@ -10,19 +10,31 @@ public class TestManager : MonoBehaviour
 
     public async void NewText()
     {
-        //QuizAPI quiz = ConsumeTest.GetNewQuestions();
-        //textDisplayed.text = quiz.Results[0];
         var quizez = await ConsumeTest.GetNewQuestions();
+
         foreach (var quiz in quizez.results)
-        {            
-            textDisplayed.text += quiz.question.Replace("&quot;", "\"").Replace("&#039;", "\'") + "\n";
-            textDisplayed.text += quiz.correct_answer + "\n";
+        {
+            string questionText = ReplaceUnicodeErrors(quiz.question) + "\n";
+            string correctAnswerText = ReplaceUnicodeErrors(quiz.correct_answer) + "\n";
+
+            textDisplayed.text += questionText;
+            textDisplayed.text += correctAnswerText;
+#if UNITY_EDITOR
+            Debug.Log($"Question: {questionText} - Correct: {correctAnswerText}");
+#endif
+
             foreach (var answer in quiz.incorrect_answers)
             {
-                textDisplayed.text += answer + "\n";
+                string inCorrectAnswerText = ReplaceUnicodeErrors(answer) + "\n";
+                textDisplayed.text += inCorrectAnswerText;
             }
 
             textDisplayed.text += "\n";
         }
+    }
+
+    private string ReplaceUnicodeErrors(string text)
+    {
+        return text.Replace("&quot;", "\"").Replace("&#039;", "\'");
     }
 }

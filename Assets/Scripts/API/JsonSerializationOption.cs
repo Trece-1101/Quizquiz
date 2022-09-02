@@ -11,7 +11,7 @@ public class JsonSerializationOption : ISerializationOption
         try
         {
             var result = JsonConvert.DeserializeObject<T>(text);
-            Debug.Log($"OK: {text}");
+            //Debug.Log($"OK: {text}");
             return result;
         }
         catch (Exception ex)

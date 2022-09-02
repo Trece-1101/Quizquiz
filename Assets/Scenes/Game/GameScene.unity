@@ -2580,6 +2580,7 @@ MonoBehaviour:
   - {fileID: 496289524}
   - {fileID: 1127118757}
   resultImage: {fileID: 1996219401}
+  timer: {fileID: 589958551}
   nextQuestionButton: {fileID: 1871313508}
   returnButton: {fileID: 1839358129}
 --- !u!4 &1399089966
@@ -2719,7 +2720,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This is a base question for the game.
+  m_text: Loading Question
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dd931dd32be101c439272ba5417dfbda, type: 2}
   m_sharedMaterial: {fileID: 1486912496348515633, guid: dd931dd32be101c439272ba5417dfbda, type: 2}

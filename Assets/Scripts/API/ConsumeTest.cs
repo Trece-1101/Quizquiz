@@ -1,8 +1,4 @@
-using UnityEngine.Networking;
-using System.IO;
-using UnityEngine;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using static QuizAPI;
 
 public static class ConsumeTest

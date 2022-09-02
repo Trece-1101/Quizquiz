@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game/PerformanceScene.unity
     guid: 0b3fe50d0e0ddcd41a0b7cead547620d
+  - enabled: 1
+    path: Assets/Scenes/Game/LoadingQuestionsScene.unity
+    guid: c499c6a6ea2890e46964214cd30d7d1f
   m_configObjects: {}
